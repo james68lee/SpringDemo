@@ -47,7 +47,7 @@ public class BookApp {
 		Book book = new Book();
 		book.setName(name);
 		book.setAuthor(autor);
-		book.setDescrtion(description);
+		book.setDescription(description);
 		book.setStatus(status);
 		
 		return bookService.save(book);
@@ -82,7 +82,7 @@ public class BookApp {
 		book.setId(id);
 		book.setName(name);
 		book.setAuthor(autor);
-		book.setDescrtion(description);
+		book.setDescription(description);
 		book.setStatus(status);
 		
 		return bookService.save(book);

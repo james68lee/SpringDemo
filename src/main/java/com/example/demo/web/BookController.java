@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.domain.Book;
 import com.example.demo.service.BookService;
@@ -22,7 +23,7 @@ public class BookController {
 	@GetMapping("/books")
 	public String getAll(Model model) {
 		List<Book> books = bookService.findAll();
-		model.addAttribute("book", books.get(0));
+		model.addAttribute("books", books);
 		return "books";
 	}
 	
@@ -33,4 +34,14 @@ public class BookController {
 		return "books";
 	}
 
+	@GetMapping("/books/input")
+	public String inputPage(){
+		return "input";
+	}
+	@PostMapping("/books")
+	public String post(Book book){
+		bookService.save(book);
+		return "redirect:/books";
+	
+	}
 }

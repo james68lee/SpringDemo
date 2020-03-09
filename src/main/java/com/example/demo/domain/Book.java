@@ -20,7 +20,7 @@ public class Book {
 	
 	private int status;
 	
-	private String descrtion;
+	private String description;
 	
 	public Book(){}
 	
@@ -40,12 +40,12 @@ public class Book {
 		this.author = author;
 	}
 
-	public String getDescrtion() {
-		return descrtion;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescrtion(String descrtion) {
-		this.descrtion = descrtion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public long getId() {
