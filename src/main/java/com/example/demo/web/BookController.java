@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.domain.Book;
 import com.example.demo.service.BookService;
@@ -35,12 +36,25 @@ public class BookController {
 	}
 
 	@GetMapping("/books/input")
-	public String inputPage(){
+	public String inputPage(Model model){
+		model.addAttribute("book", new Book());
 		return "input";
 	}
+	
+	@GetMapping("/books/{id}/input")
+	public String inputEditPage(@PathVariable long id, Model model) {
+		System.out.println("id" + id);
+		Book books = bookService.getOne(id);
+		model.addAttribute("book", books);
+		return "input";
+	}
+	
 	@PostMapping("/books")
-	public String post(Book book){
-		bookService.save(book);
+	public String post(Book book, final RedirectAttributes attributes){
+		Book book1 = bookService.save(book);
+		if(book1 != null) {
+			attributes.addFlashAttribute("message", book1.getName()+"Add Successed.");
+		}
 		return "redirect:/books";
 	
 	}

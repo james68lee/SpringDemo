@@ -20,9 +20,15 @@
 <title>Books</title>
 </head>
 <body th:object = "${books}">
-	<div class="container" style="max-width: 700px;margin-top: 30px">
+	<div class="container" style="max-width: 800px;margin-top: 30px">
 		<div class="well">
 	        <h1>Spring Boot LIST</h1>
+	        
+	        <div class="alert alert-success alert-dismissable fade in" th:unless="${#strings.isEmpty(message)}">
+	        	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	        	<Strong>Done. </Strong>
+	        	<span th:text ="${message}"></span>
+	        </div>
 	        <p class="text-right"><a href ="./input.html" th:href="@{/books/input}" class="btn btn-primary">New</a></p>
 	        <table class = "table table-bordered table-striped table-hover">
 	        	<thead>
@@ -32,20 +38,24 @@
 	        			<th>BOOK AUTHOR.</th>
 	        			<th>BOOK DESCRIPTION.</th>
 	        			<th>BOOK STATUS.</th>
+	        			<th>EDIT</th>
 	        		</tr>
 	        	</thead>
 	        	<tbody>
 	        		<tr th:each="book,iterStat:${books}" th:class="${iterStat.even}? 'bg-success'">
-	        			<th th:text="${iterStat.size}">1</th>
-	        			<th th:text="${book.name}">BOOK NANE.</th>
-	        			<th th:text="${book.author}">BOOK AUTHOR.</th>
-	        			<th th:text="${book.description}">BOOK DESCRIPTION.</th>
-	        			<th th:switch="${book.status}">
+	        			<td th:text="${iterStat.size}">1</th>
+	        			<td th:text="${book.name}">BOOK NANE.</th>
+	        			<td th:text="${book.author}">BOOK AUTHOR.</th>
+	        			<td th:text="${book.description}">BOOK DESCRIPTION.</th>
+	        			<td th:switch="${book.status}">
 	        				<span th:case="0">Status 0</span>
 	            			<span th:case="1">Status 1</span>
 	            			<span th:case="2">Status 2</span>
 	            			<span th:case="*">DEFAULT *</span>
-	        			</th>
+	        			</td>
+	        			<td>
+	        				<a href="#" th:href="@{/books/{id}/input(id=${book.id})}">EDIT</a>
+	        			</td>
 	        		</tr>
 	        	</tbody>
 	        </table>
