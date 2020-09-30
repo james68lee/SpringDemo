@@ -1,20 +1,23 @@
-package com.example.demo.domain;
+package com.springboot.jameslee.entity;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "book")
 public class Book {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;	
 	
 
-	private String name;
+	private String bookName;
 	
 	private String author;
 	
@@ -24,12 +27,12 @@ public class Book {
 	
 	public Book(){}
 	
-	public String getName() {
-		return name;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 	public String getAuthor() {
